@@ -1,16 +1,14 @@
 class Solution:
     def searchRange(self, nums: List[int], target: int) -> List[int]:
-        l, r = 0, len(nums)-1
-        ans = [-1,-1]
-        for _ in nums:
-            if nums[l] == target and ans[0] == -1:
-                ans[0] = l
-            else:
-                l+=1
-            if nums[r] == target and ans[1] == -1:
-                ans[1] = r
-            else:
-                r-=1
-        return ans
-        
-                
+        start = -1
+        end = -1
+        cnt = 0
+        for i in range(len(nums)):
+            if nums[i] == target:
+                if cnt == 0:
+                    start = i
+                    end = i
+                elif cnt > 0:
+                    end = i
+                cnt+=1
+        return [start, end]
