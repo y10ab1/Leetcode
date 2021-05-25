@@ -1,16 +1,10 @@
 class Solution:
     def search(self, nums: List[int], target: int) -> int:
-        l=0; r=len(nums)-1
-        
-        while l<=r:
-            mid = (l+r)//2
-            if nums[mid] < target:
-                l = mid+1
-            elif nums[mid] > target:
-                r = mid-1
-            elif nums[mid] == target:
-                return mid
-            
-            
-        
-        return -1
+        def BS(nums,low,high):
+            if low>high:return -1
+            mid = (low+high)//2
+            print(nums[mid], target)
+            if target == nums[mid]: return mid
+            elif target > nums[mid]: return BS(nums,mid+1,high)
+            elif target < nums[mid]: return BS(nums,low,mid-1)
+        return BS(nums,0,len(nums)-1)
