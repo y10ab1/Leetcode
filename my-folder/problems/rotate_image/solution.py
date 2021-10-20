@@ -3,11 +3,10 @@ class Solution:
         """
         Do not return anything, modify matrix in-place instead.
         """
+        for j in range(len(matrix)):
+            for i in range(j):
+                matrix[i][j], matrix[j][i] =  matrix[j][i], matrix[i][j]
         for i in range(len(matrix)):
-            for j in range(i,len(matrix)):
-                matrix[i][j], matrix[j][i] = matrix[j][i],  matrix[i][j]
+            matrix[i] = matrix[i][::-1]
+                
         
-        for i in range(len(matrix)):
-            for j in range(len(matrix)//2):
-                matrix[i][j], matrix[i][-1-j] = matrix[i][-1-j], matrix[i][j]
-            
