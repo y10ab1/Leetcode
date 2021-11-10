@@ -1,22 +1,16 @@
 class Solution:
     def allPathsSourceTarget(self, graph: List[List[int]]) -> List[List[int]]:
-        d = defaultdict(list)
-        for idx,e in enumerate(graph):
-            d[idx]+=e
-        q = deque([[0]])
         ans = []
-        while q:
-            path = q.popleft()
-            node = path[-1]
-            for v in d[node]:
-                temp_path = path.copy()
-                temp_path.append(v)
-                if v == len(graph) - 1:
-                    ans.append(temp_path)
-                else:
-                    q.append(temp_path)
-        
+        tmp = []
+        def dfs(n):
             
-                
+            tmp.append(n)
+            if n == len(graph)-1:
+                ans.append(tmp.copy())
+                tmp.pop()
+                return
+            for i in graph[n]:
+                dfs(i)
+            tmp.pop()
+        dfs(0)
         return ans
-                
