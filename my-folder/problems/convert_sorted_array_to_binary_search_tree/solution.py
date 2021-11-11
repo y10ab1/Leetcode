@@ -7,10 +7,12 @@
 class Solution:
     def sortedArrayToBST(self, nums: List[int]) -> Optional[TreeNode]:
         def build(l,r):
-            if l >= r:
+            if l > r:
                 return None
             m = (l+r)//2
-            return TreeNode(nums[m], build(l,m), build(m+1,r))
-                              
-        return build(0, len(nums))
-            
+            node = TreeNode(nums[m])
+            node.right = build(m+1,r)
+            node.left = build(l,m-1)
+            return node
+        root = build(0,len(nums)-1)
+        return root
