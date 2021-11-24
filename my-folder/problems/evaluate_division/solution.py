@@ -1,31 +1,29 @@
 class Solution:
     def calcEquation(self, equations: List[List[str]], values: List[float], queries: List[List[str]]) -> List[float]:
         edges = defaultdict(list)
-        for (a, b), v in zip(equations, values):
-            edges[a].append((b, v))
-            edges[b].append((a, 1/v))
-            
-        def dfs(A, B, seen):
-            if seen[A]:
-                return -1
-            else:
-                seen[A] = True
-                for (nextNode, value) in edges[A]:
-                    nextval = -1
-                    if nextNode == B:
-                        return value
-                    
-                    nextval = dfs(nextNode, B, seen)
-                    if nextval == -1:
-                        continue
-                    else:
-                        return nextval * value
-                                                 
-                return -1
-            
-        ansList = []
         
-        for A, B in queries:
+        
+        # Build edges of the graph
+        for idx, e in enumerate(equations):
+            edges[e[0]].append((e[1], values[idx]))
+            edges[e[1]].append((e[0], 1/values[idx]))
+
+        def dfs(idx: str, target: str, val: float, seen: dict) -> float:
+            seen[idx] = True
+            res = -1.0
+            if idx == target and edges[idx]:
+                return val
+            for e in edges[idx]:
+                print(e)
+                if not seen[e[0]]:
+                    res = dfs(e[0], target, val*e[1], seen)
+                    if res != -1.0:
+                        return res
+            return res
+        
+        ans = []
+        for q in queries:
             seen = defaultdict(bool)
-            ansList.append(dfs(A, B, seen))
-        return ansList
+            ans.append(dfs(q[0], q[1], 1, seen))
+        return ans
+            
