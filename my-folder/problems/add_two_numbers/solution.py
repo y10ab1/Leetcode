@@ -5,44 +5,36 @@
 #         self.next = next
 class Solution:
     def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
-        Head = ListNode()
-        ans = ListNode()
-        Head = ans
-        while l1 or l2:
-            if l1 and l2:
-                Q = ((l1.val+l2.val+ans.val)//10)
-                R = (l1.val+l2.val+ans.val)%10
-                l1, l2 = l1.next, l2.next
+        def add(Q, p1, p2):
+            if p1 and p2:
+                Q = p1.val + p2.val + Q
+                r = Q%10
+                q = Q//10
+                a = ListNode(val=r)
+                a.next = add(q, p1.next, p2.next)
+                return a
+            elif p1 and not p2:
+                Q = p1.val + Q
+                r = Q%10
+                q = Q//10
+                a = ListNode(val=r)
+                a.next = add(q, p1.next, None)
+                return a
+            elif p2 and not p1:
+                Q = p2.val + Q
+                r = Q%10
+                q = Q//10
+                a = ListNode(val=r)
+                a.next = add(q, None, p2.next)
+                return a
+            else:
+                if Q > 0:
+                    a = ListNode(val=Q)
+                    return a
                 
-                nextans = ListNode(Q)
-                ans.val = R
-                if l1 or l2:
-                    ans.next = nextans
-                    ans = ans.next
-                
-            elif not l2:
-                Q = ((l1.val+ans.val)//10)
-                R = (l1.val+ans.val)%10
-                l1 =l1.next
-                
-                nextans = ListNode(Q)
-                ans.val = R
-                if l1:
-                    ans.next = nextans
-                    ans = ans.next
-            elif not l1:
-                Q = ((l2.val+ans.val)//10)
-                R = (l2.val+ans.val)%10
-                l2 =l2.next
-                
-                nextans = ListNode(Q)
-                ans.val = R
-                if l2:
-                    ans.next = nextans
-                    ans = ans.next
-        if nextans.val !=0:
-            ans.next = nextans
-            ans = ans.next
-        return Head
+            
+        prehead = ListNode()
+        prehead.next = add(0, l1, l2)
+        return prehead.next
         
         
