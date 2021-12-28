@@ -8,15 +8,19 @@ class Node:
 
 class Solution:
     def levelOrder(self, root: 'Node') -> List[List[int]]:
-        q = deque([root])
+        if not root:
+            return []
         ans = []
-        while q:
+        q = deque([root])
+        def BFS(q):
             level = []
-            for i in range(len(q)):
+            for _ in range(len(q)):
                 node = q.popleft()
-                if not node: continue
-                q+=node.children
                 level.append(node.val)
-            if level:
-                ans.append(level)
+                q += node.children
+                
+            ans.append(level)
+            if q:
+                BFS(q)
+        BFS(q)
         return ans
