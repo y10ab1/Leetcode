@@ -10,17 +10,14 @@ class Solution:
     def levelOrder(self, root: 'Node') -> List[List[int]]:
         if not root:
             return []
-        ans = []
         q = deque([root])
-        def BFS(q):
+        ans = []
+        while q:
             level = []
             for _ in range(len(q)):
                 node = q.popleft()
                 level.append(node.val)
-                q += node.children
                 
+                q+=node.children
             ans.append(level)
-            if q:
-                BFS(q)
-        BFS(q)
         return ans
