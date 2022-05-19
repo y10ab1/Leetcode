@@ -5,33 +5,22 @@
 #         self.left = left
 #         self.right = right
 class Solution:
+    def __init__(self):
+        self.previous_val = float('-inf')
     def isValidBST(self, root: Optional[TreeNode]) -> bool:
-        def dfs(r):
-            if not r:
-                return 'None', 'None'
-            leftmin, leftmax = dfs(r.left)
-            rightmin, rightmax = dfs(r.right)
-            if leftmax == 'False' or rightmin == 'False':
-                return 'False', 'False'
+        if root:
+            if not self.isValidBST(root.left):
+                return False
             
+            if root.val <= self.previous_val:
+                return False
             
-            if leftmax == 'None' or rightmin == 'None':
-                if rightmin == 'None' and leftmax == 'None':
-                    return r.val, r.val
-                elif leftmax == 'None' and r.val < rightmin:
-                    return r.val, rightmax
-                elif rightmin == 'None' and r.val > leftmax:
-                    return leftmin, r.val
-                else:
-                    return 'False', 'False'
-            else:
-                if leftmax < r.val and r.val < rightmin:
-                    return leftmin, rightmax
-                else:
-                    return 'False', 'False'
+            self.previous_val = root.val
+            
+            if not self.isValidBST(root.right):
+                return False
         
-        ansl, ansr = dfs(root)
-        if ansl == 'False' or ansr == 'False':
-            return False
-        else:
-            return True
+        return True
+    
+    
+        
