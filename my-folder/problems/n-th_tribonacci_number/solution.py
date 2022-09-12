@@ -1,16 +1,13 @@
 class Solution:
     def tribonacci(self, n: int) -> int:
+        a0,a1,a2=0,1,1
         if n == 0:
             return 0
-        elif n == 1:
-            return 1
-        elif n == 2:
+        elif n<3:
             return 1
         
-        dp = [0] * (n+1)
-        dp[0], dp[1], dp[2] = 0, 1, 1
-        
-        for i in range(3, n+1):
-            dp[i] = dp[i-1] + dp[i-2] + dp[i-3]
+        for i in range(3,n+1):
+            t = a0+a1+a2
+            a0,a1,a2 = a1,a2,t
             
-        return dp[n]
+        return a2
