@@ -1,11 +1,10 @@
 class Solution:
     def minMeetingRooms(self, intervals: List[List[int]]) -> int:
-        startheap = []
+        startheap = [i for i in intervals]
         endheap = []
         cnt=1
         
-        for i in intervals:
-            heapq.heappush(startheap, i)
+        heapq.heapify(startheap)
             
         while startheap:
             ss,se = heapq.heappop(startheap)
