@@ -1,6 +1,6 @@
 class Solution:
     def minMeetingRooms(self, intervals: List[List[int]]) -> int:
-        startheap = [i for i in intervals]
+        startheap = intervals
         endheap = []
         cnt=1
         
