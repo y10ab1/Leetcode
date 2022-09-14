@@ -6,25 +6,28 @@
 #         self.right = right
 class Solution:
     def pseudoPalindromicPaths (self, root: Optional[TreeNode]) -> int:
-        nodes = set()
+        bitmask = 0
         self.ans = 0
         
-        def dfs(node, s):
+        
+        def dfs(node, bitmask):
+            if not node: return
+            bit = 1<<(node.val - 1)
+            bitmask^=bit
             
+            dfs(node.left, bitmask)
+            dfs(node.right, bitmask)
             
-            if node.val in s:
-                s.remove(node.val)
-            else:
-                s.add(node.val)
-            if node.left:   
-                dfs(node.left, s.copy())
-            if node.right:
-                dfs(node.right, s.copy())
-            if not node.left and not node.right and len(s)<=1:
-                self.ans+=1
+            if node.left == node.right:
+                if not bitmask ^ (bitmask & -bitmask):
+                    self.ans +=1
+                    
+        dfs(root, bitmask)
+        return self.ans
+            
                 
             
-        dfs(root, nodes.copy())
+        dfs(root, bitmask)
         return self.ans
             
             
