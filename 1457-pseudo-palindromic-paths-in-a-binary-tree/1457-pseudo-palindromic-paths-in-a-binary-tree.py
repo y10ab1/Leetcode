@@ -24,10 +24,5 @@ class Solution:
         dfs(root, bitmask)
         return self.ans
             
-                
-            
-        dfs(root, bitmask)
-        return self.ans
-            
             
             
