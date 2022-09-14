@@ -11,12 +11,11 @@ class Solution:
         
         
         def dfs(node, bitmask):
-            if not node: return
             bit = 1<<(node.val - 1)
             bitmask^=bit
             
-            dfs(node.left, bitmask)
-            dfs(node.right, bitmask)
+            if node.left: dfs(node.left, bitmask)
+            if node.right: dfs(node.right, bitmask)
             
             if node.left == node.right:
                 if not bitmask ^ (bitmask & -bitmask):
