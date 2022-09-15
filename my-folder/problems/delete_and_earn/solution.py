@@ -1,22 +1,16 @@
 class Solution:
     def deleteAndEarn(self, nums: List[int]) -> int:
-        acc = defaultdict(int)
-        maxvalue = 0
-        for i in nums:
-            acc[i] += i
-            maxvalue = max(maxvalue, i)
+        d = collections.Counter(nums)
         
-
-        keys = sorted(acc.keys())
+        keys = sorted(d.keys())
+        pre,cur = 0, d[keys[0]]*keys[0]
         
-        b2 = 0
-        b1 = acc[keys[0]]
-        
-        for i in range(1, len(keys)):
-            cur = keys[i]
-            if cur == keys[i-1]+1:
-                b2, b1 = b1, max(b1, b2+acc[cur])
+        for i in range(1,len(keys)):
+            k = keys[i]
+            if k-1 == keys[i-1]:
+                pre, cur = cur, max(cur, d[k]*k+pre)
             else:
-                b2, b1 = b1, b1+acc[cur]
-        
-        return b1
+                pre, cur = cur, cur+d[k]*k
+            
+            
+        return cur
