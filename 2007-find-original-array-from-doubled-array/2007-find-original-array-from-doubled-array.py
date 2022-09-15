@@ -19,4 +19,7 @@ class Solution:
         if len(ans)*2 == n and not any(cnt.values()):
             return ans
         return []
+    
+        # time: O(n)
+        # space: O(n)
                 
