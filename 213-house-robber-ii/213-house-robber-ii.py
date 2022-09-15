@@ -5,18 +5,17 @@ class Solution:
             return max(nums)
         
         
-        pre, cur = nums[0], max(nums[1], nums[0])
+        pre1, cur1 = nums[0], max(nums[1], nums[0])
+        pre2, cur2 = nums[1], max(nums[1], nums[2])
+        
         
         for i in range(2,n-1):
-            pre, cur = cur, max(pre+nums[i],cur)
-        s0 = cur
-        
-        pre, cur = nums[1], max(nums[1], nums[2])
-        
-        for i in range(3,n):
-            pre, cur = cur, max(pre+nums[i],cur)
+            pre1, cur1 = cur1, max(pre1+nums[i],cur1)
+            pre2, cur2 = cur2, max(pre2+nums[i+1],cur2)
             
-        s1 = cur
         
-        return max(s1,s0)
+        
+            
+        
+        return max(cur1,cur2)
             
