@@ -8,18 +8,13 @@ class Solution:
         
         for i in range(1,n):
             left[i] = left[i-1] * nums[i-1]
-        
-        
-        for i in range(n-2,-1,-1):
-            right[i] = right[i+1] * nums[i+1]
+            right[n-1-i] = right[n-i] * nums[n-i]
             
         ans = []
         for i in range(n):
             ans.append(left[i]*right[i])
         
-            
-        # left [1,1,2,6]
-        # right [24,12,4,1]
+
         return ans
         # time: O(n)
         # space: O(n)
