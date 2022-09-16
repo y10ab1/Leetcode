@@ -15,3 +15,6 @@ class Solution:
                 l+=1
             r+=1
         return maxlen
+    
+        # time: O(n)
+        # space: O(n)
