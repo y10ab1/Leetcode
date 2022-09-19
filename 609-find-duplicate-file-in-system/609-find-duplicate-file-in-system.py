@@ -4,9 +4,8 @@ class Solution:
         for path in paths:
             path = path.split(" ")
             for i in range(1,len(path)):
-                content = path[i].split('(')[1]
-                file = path[i].split('(')[0]
-            
+                file, content = path[i].split('(')
+                
                 dup[content].append("/".join([path[0],file]))
         ans = []
         for v in dup.values():
