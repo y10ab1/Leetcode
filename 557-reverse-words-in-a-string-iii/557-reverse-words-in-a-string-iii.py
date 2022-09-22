@@ -3,7 +3,5 @@ class Solution:
         slist = s.split(" ")
         ans = ""
         for word in slist:
-            for i in range(len(word)-1,-1,-1):
-                ans+=word[i]
-            ans+=" "
+            ans+=word[::-1]+" "
         return ans[:-1]
