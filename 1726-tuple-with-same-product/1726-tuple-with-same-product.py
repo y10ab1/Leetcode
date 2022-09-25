@@ -1,12 +1,12 @@
 class Solution:
     def tupleSameProduct(self, nums: List[int]) -> int:
-        d = {}
+        d = defaultdict(int)
         n,ans = len(nums),0
         for i in range(n):
             for j in range(i+1,n):
                 k = nums[i]*nums[j]
-                ans+=d.get(k,0)
-                d[k]=1+d.get(k,0)
+                ans+=d[k]
+                d[k]+=1
         
         
         return 8*ans
