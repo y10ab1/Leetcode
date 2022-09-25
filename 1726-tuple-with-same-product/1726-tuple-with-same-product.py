@@ -9,7 +9,6 @@ class Solution:
         
         for k in d.keys():
             if len(d[k]) > 1:
-                print(d[k])
                 for i in range(len(d[k])):
                     for j in range(i+1,len(d[k])):
                         if len(d[k][i] & d[k][j]) == 0:
