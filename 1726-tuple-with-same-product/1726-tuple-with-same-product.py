@@ -5,8 +5,9 @@ class Solution:
         ans = 0
         for i in range(n):
             for j in range(i+1,n):
-                ans+=d[nums[i]*nums[j]]
-                d[nums[i]*nums[j]]+=1
+                k = nums[i]*nums[j]
+                ans+=d[k]
+                d[k]+=1
         
         
         return 8*ans
