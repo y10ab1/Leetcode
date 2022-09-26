@@ -6,15 +6,19 @@ class Solution:
         
         uf = {c:c for c in string.ascii_lowercase}
         
+        # O(n)
         for a,e,_,b in equations:
             if e == "=":
                 uf[find(a)] = find(b)
-                
+        
+        # O(n)
         for a,e,_,b in equations:
             if e == "!" and find(a)==find(b):
                 return False
         
         return True
 
+        # Time: O(n)
+        # Space: O(1)
             
             
