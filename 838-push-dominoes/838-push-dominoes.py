@@ -8,7 +8,7 @@ class Solution:
         LR = [(i,c) for i,c in enumerate(dominoes) if c != '.']
         
 
-        preidx,j,prec =0,0,'L'
+        preidx,prec =0,'L'
         for idx,c in LR:
             if c == 'L' and prec == 'L':
                 for k in range(idx-1,-1,-1):
