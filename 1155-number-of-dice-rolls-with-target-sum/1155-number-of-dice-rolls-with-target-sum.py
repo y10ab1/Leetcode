@@ -4,7 +4,6 @@ class Solution:
         #dp[i][j] = dp[i-1]
         
         dp = [[0]*(1000+1) for _ in range(n+1)]
-        premin=0
         for i in range(1,k+1):
             dp[1][i]=1
         for i in range(2,n+1):
