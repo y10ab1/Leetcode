@@ -13,8 +13,9 @@ class Solution:
             if dep+1 == depth:
                 node.left = TreeNode(val=val,left=node.left)
                 node.right = TreeNode(val=val,right=node.right)
-            dfs(node.left,dep+1,depth)
-            dfs(node.right,dep+1,depth)
+            if depth > dep:
+                dfs(node.left,dep+1,depth)
+                dfs(node.right,dep+1,depth)
             
         if depth==1:
             root = TreeNode(val=val,left=root)
