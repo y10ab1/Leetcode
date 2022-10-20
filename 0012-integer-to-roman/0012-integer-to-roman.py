@@ -14,19 +14,9 @@ class Solution:
             ,900:'CM'
             ,1000:'M'}
         ans = []
-        dig = 1
-        while num>0:
-            n = int(num%10)
-            if n<4:
-                for i in range(n):
-                    ans.append(d[dig])
-            elif 6<=n<9:
-                for i in range(5,n):
-                    ans.append(d[dig])
-                ans.append(d[5*dig])
-            else:
-                ans.append(d[n*dig])
-            num/=10
-            dig*=10
-        return "".join(ans[::-1])
+        l = list(d.keys())[::-1]
+        for i in l:
+            ans.append((num//i)*d[i])
+            num%=i
+        return "".join(ans)
             
