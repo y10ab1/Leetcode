@@ -1,5 +1,4 @@
 name: LeetCode Sync
-uses: joshcai/leetcode-sync@v1.5
 
 
 on:
@@ -12,8 +11,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Sync
-      uses: joshcai/leetcode-sync@v1.4
+    - name: LeetCode Sync
+      uses: joshcai/leetcode-sync@v1.5
       with:
         github-token: ${{ github.token }}
         leetcode-csrf-token: ${{ secrets.LEETCODE_CSRF_TOKEN }}
