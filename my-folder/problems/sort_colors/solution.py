@@ -3,15 +3,16 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
-        zero = 0
-        second = len(nums)-1
+        l = 0
         for i in range(len(nums)):
-            while nums[i]==2 and i<second:
-                nums[i], nums[second] = nums[second], nums[i]
-                second-=1
-            while nums[i]==0 and i>zero:
-                nums[i], nums[zero] = nums[zero], nums[i]
-                zero+=1
-            if second <= zero :
-                break
-        
+            if nums[i] == 0:
+                nums[i], nums[l] = nums[l], nums[i]
+                l+=1
+        l = len(nums)-1
+        for i in range(len(nums)-1,-1,-1):
+            if nums[i] == 2:
+                nums[i], nums[l] = nums[l], nums[i]
+                l-=1
+                
+            
+
